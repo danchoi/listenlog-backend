@@ -45,7 +45,7 @@ class ListenLoggerTest < ActiveSupport::TestCase
   test "extend duration of stream listen record" do
     time_start = 1.minute.ago
     time_2 = time_start + 5.seconds
-    doc_id = ListenLogger.new(create_stream_json).create_doc(1.minute.ago)['id']
+    doc_id = ListenLogger.new(create_stream_json).create_doc(time_start)['id']
     json = {:doc_id => doc_id, :mesasgeType => "extendDuration"}.to_json
     ListenLogger.new(json).extend_duration(:until => time_2)
     assert_equal 5, @db.get(doc_id)['listenLog']['listenDuration']
