@@ -32,13 +32,14 @@ class ListenLoggerTest < ActiveSupport::TestCase
     assert_equal "Pennsylvania", doc['stream']['location']
   end
 
+  # Subclasses of ListenLogger will handle updating existing Stream and Podcast documents to 
+  # reflect listening duration, etc. Refer to those class definitions and tests.
+
   def create_stream_json
     <<-JSON
 {"stream":{"frequency":"WHYY-FM 90.9","website":"http://whyy.org","url":"http://207.245.67.204:80","location":"Pennsylvania","streamID":63,"logoURL":"http://stream.publicbroadcasting.net/publicradioplayer/iphone/logos/whyy.jpg","displayName":"WHYY Philadelphia"},"currentProgram":{"title":"Fresh Air","endTime":"2010-03-10 16:00:00 -0500","startTime":"2010-03-10 15:00:00 -0500","programID":27},"messageType":"logStream","user":{"UDID":"45A4C147-9ECE-592E-925B-FC39657842F6"}}
     JSON
   end
-
-
 end
 
 __END__
