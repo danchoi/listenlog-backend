@@ -24,7 +24,7 @@ class ListenLoggerTest < ActiveSupport::TestCase
 
   test 'persist json in couchDB' do
     x = ListenLogger.new(create_stream_json)
-    resp = x.save_doc
+    resp = x.create_doc
     assert resp['ok']
     assert resp['id']
     assert resp['rev']
@@ -32,8 +32,24 @@ class ListenLoggerTest < ActiveSupport::TestCase
     assert_equal "Pennsylvania", doc['stream']['location']
   end
 
-  # Subclasses of ListenLogger will handle updating existing Stream and Podcast documents to 
-  # reflect listening duration, etc. Refer to those class definitions and tests.
+  test "should set initial listen duration and array to hold all log time markers" do
+    doc_id = ListenLogger.new(create_stream_json).create_doc['id']
+    doc = @db.get(doc_id)
+    assert doc['listenLog']
+    assert doc['listenLog']['listenDuration']
+    assert_equal 0, doc['listenLog']['listenDuration']
+    assert_match %r{\d\d\d\d/\d\d/\d\d \d\d:\d\d:\d\d \+\d\d\d\d}, doc['listenLog']['createdAt']
+    DateTime.parse(doc['listenLog']['createdAt']) # should not raise error
+  end
+
+  test "extend duration of stream listen record" do
+    time_start = 1.minute.ago
+    time_2 = time_start + 5.seconds
+    doc_id = ListenLogger.new(create_stream_json).create_doc(1.minute.ago)['id']
+    json = {:doc_id => doc_id, :mesasgeType => "extendDuration"}.to_json
+    ListenLogger.new(json).extend_duration(:until => time_2)
+    assert_equal 5, @db.get(doc_id)['listenLog']['listenDuration']
+  end
 
   def create_stream_json
     <<-JSON

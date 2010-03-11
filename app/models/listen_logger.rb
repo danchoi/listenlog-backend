@@ -11,8 +11,30 @@ class ListenLogger
     @parsed = JSON.parse(json)
   end
 
-  def save_doc
+  def create_doc(created_at = Time.now) # parameterized to make testing easier
+    @parsed[:listenLog] = {:listenDuration => 0, :createdAt => created_at}
+
+    if @parsed[:messageType] == 'logPodcast'
+      @parsed.merge!({:totalDuration => nil, :lastListenedSecond => 0})
+    elsif @parsed[:messageType] == 'logStream'
+
+    end
     @@db.save_doc(@parsed)
+  end
+
+  def extend_duration(params)
+    get_doc
+    if params[:until].is_a?(Time)
+      created_at = DateTime.parse(@doc['listenLog']['createdAt'])
+      new_duration = (params[:until] - created_at).to_i
+      @doc['listenLog']['listenDuration'] = new_duration
+      @@db.save_doc(@doc)
+    end
+  end
+
+  def get_doc
+    @doc_id = @parsed.delete("doc_id")
+    @doc = @@db.get(@doc_id)
   end
 
 
