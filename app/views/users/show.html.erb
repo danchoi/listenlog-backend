@@ -1,0 +1,8 @@
+<h3>Listen Log for User <%= params[:id] %></h3>
+
+
+<% @items.each do |x| %>
+  <%= render :partial => 'users/item', :object => x %>
+<% end %>
+
+

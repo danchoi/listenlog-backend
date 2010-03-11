@@ -24,9 +24,7 @@
 <div id="spyContainer">
 
   <% @items.each do |x| %>
-    <div class="listenItem">
-      <%= x.inspect %>
-    </div>
+    <%= render :partial => 'shared/item', :object => x %>
   <% end %>
 
 

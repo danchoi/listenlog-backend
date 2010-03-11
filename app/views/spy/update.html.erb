@@ -1,5 +1,5 @@
 <% @items.each do |item| %>
-    <div class="listenItem">
-      <%= item.inspect %>
-    </div>
-  <% end %>    
+
+  <%= render :partial => 'shared/item', :object => item %>
+
+<% end %>    

@@ -1,0 +1,11 @@
+<div class="listenItem">
+  <%= link_to "Someone", "/users/#{item['user']['UDID']}" %> 
+  <%= reverse_geocode(item) %> 
+  <% if item["messageType"] == "logStream" %>
+    <%= current_streaming_program_description(item) %>
+  <% else %>
+    <%= podcast_description(item) %>
+
+  <% end %>
+</div>
+

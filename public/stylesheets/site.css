@@ -47,6 +47,8 @@ table.pin td {
 /* VRM */
 .listenItem {
   clear: both;
+  padding-bottom: 10px;
+  padding-top: 10px;
   margin-bottom: 20px;
 
 }
@@ -59,4 +61,9 @@ table.pin td {
 .timestamp {
   color: #666;
   font-size:smaller;
+}
+.episode-summary {
+  color: #666;
+  font-size: small;
+  margin:0;
 }

@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect 'logger', :controller => 'logger', :action => 'log'
   map.connect 'spy', :controller => 'spy'
+  map.resources 'users'
 
   # Sample of named route:
   #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
