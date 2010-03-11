@@ -1,7 +1,6 @@
 class DemoData < ActiveRecord::Base
   serialize :payload
 
-
   def to_s
     y = payload
     if schedule = y.delete("schedule")
