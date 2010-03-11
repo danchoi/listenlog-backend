@@ -1,0 +1,34 @@
+<h1>Listen Log Demo</h1>
+
+<script type="text/javascript">
+  $(function() {
+    /* returns a selection of HTML DIVs to be inserted in to 
+        the #spyContainer in a spy-style */
+      $('#spyContainer').spy({
+        'ajax': '/demo_data/spy'
+        /*, 'isDupe': function(latest, last) {
+
+        console.log("isDupe");
+          console.log(latest);
+          console.log(latest.id);
+          return !!(latest.id == last.id);
+       }
+       */
+
+
+        
+        }); 
+  });
+</script>
+
+<div id="spyContainer">
+
+  <% @items.each do |x| %>
+    <div class="listenItem">
+      <%= x %>
+      <span class="timestamp"><%= x.created_at.to_s(:short) %></span>
+    </div>
+  <% end %>
+
+
+</div>
