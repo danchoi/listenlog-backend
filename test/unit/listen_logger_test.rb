@@ -105,6 +105,8 @@ end
 
 __END__
 
+ {"stream":{"frequency":"WBUR 90.9 FM","website":"http://www.wbur.org","url":"http://wbur-sc.streamguys.com:80","location":"Massachusetts","streamID":142,"logoURL":"http://stream.publicbroadcasting.net/publicradioplayer/iphone/logos/wbur.jpg","displayName":"90.9 WBUR, Boston"},"currentProgram":{"title":"Newshour","endTime":"2010-03-11 10:00:00 -0500","startTime":"2010-03-11 09:00:00 -0500","programID":23},"messageType":"logStream","user":{"UDID":"45A4C147-9ECE-592E-925B-FC39657842F6"}}
+
 from DemoData
 
     y = payload

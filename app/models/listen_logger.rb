@@ -23,6 +23,8 @@ class ListenLogger
     @@db.save_doc(@parsed)
   end
 
+  # Most of the parameters are in the json passed to initialize. 
+  # The ability to pass in optional params here is for testing Time intervals.
   def extend_duration(params={})
     default_params = {:until => Time.now}
     params = default_params.merge(params)
