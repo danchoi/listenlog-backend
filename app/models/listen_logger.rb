@@ -5,10 +5,11 @@ class ListenLogger
   @@db = @@cr.database(COUCHDB)
 
 
-  attr_reader :raw, :parsed
+  attr_reader :raw, :parsed, :message_type
   def initialize(json)
     @raw = json
     @parsed = JSON.parse(json)
+    @message_type = @parsed['messageType']
   end
 
   def create_doc(created_at = Time.now) # parameterized to make testing easier

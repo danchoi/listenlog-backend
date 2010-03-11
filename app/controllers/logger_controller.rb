@@ -1,7 +1,11 @@
 class LoggerController < ApplicationController
   skip_before_filter :verify_authenticity_token
   def log
-    payload = JSON.parse(request.body.read.to_s)
+    payload = JSON.parse(request.body.read)
+    @listen_logger = ListenLogger.new(payload)
+    if @listen_logger
+    end
+
     logger.debug("\nPAYLOAD: #{payload.inspect}")
     # TODO proxy this back to the CouchDB server
 

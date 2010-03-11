@@ -73,6 +73,17 @@ class ListenLoggerTest < ActiveSupport::TestCase
     assert_equal 7, @db.get(doc_id)['listenLog']['lastListenedPoint']
   end
 
+  test "should expose flag to indicate message type" do
+    listen_logger = ListenLogger.new(create_podcast_json)
+    assert_equal "logPodcast", listen_logger.message_type
+    listen_logger = ListenLogger.new(create_stream_json)
+    assert_equal "logStream", listen_logger.message_type
+
+    message = {:doc_id => '1234', :messageType => "extendDuration"}
+    listen_logger = ListenLogger.new(message.to_json)
+    assert_equal 'extendDuration', listen_logger.message_type 
+  end
+
   def create_stream_json
     <<-JSON
 {"stream":{"frequency":"WHYY-FM 90.9","website":"http://whyy.org","url":"http://207.245.67.204:80","location":"Pennsylvania","streamID":63,"logoURL":"http://stream.publicbroadcasting.net/publicradioplayer/iphone/logos/whyy.jpg","displayName":"WHYY Philadelphia"},"currentProgram":{"title":"Fresh Air","endTime":"2010-03-10 16:00:00 -0500","startTime":"2010-03-10 15:00:00 -0500","programID":27},"messageType":"logStream","user":{"UDID":"45A4C147-9ECE-592E-925B-FC39657842F6"}}
@@ -81,7 +92,7 @@ class ListenLoggerTest < ActiveSupport::TestCase
 
   def create_podcast_json
     <<-JSON
-    {"program":{"programID":27,"podcast":"http://www.npr.org/rss/podcast.php?id=13","title":"Fresh Air","description":"Fresh Air from WHYY, the Peabody Award-winning weekday magazine of contemporary arts and issues, is one of public radio's most popular programs. Hosted by Terry Gross, the show features intimate conversations with today's biggest luminaries.","category":"","imageURL":"http://media.npr.org/images/podcasts/thumbnail/npr_freshair_image_75.jpg","website":""},"messageType":"logPodcastfromProgram","episode":{"enclosure":"http://podcastdownload.npr.org/anon.npr-podcasts/podcast/13/124475239/npr_124475239.mp3","title":"NPR: 03-08-2010 Fresh Air","url":"http://freshair.npr.org?ft=2&f=13","episodeID":4007779,"summary":"Stories:  1) 'Whip Smart': Memoirs Of A Dominatrix 2) The Gods, At Play In The House Of Mortals 3) A Tribute To Sparklehorse's Mark Linkous","pubDate":"2010-03-08 21:31:14 -0500"},"user":{"UDID":"45A4C147-9ECE-592E-925B-FC39657842F6"}}
+    {"program":{"programID":27,"podcast":"http://www.npr.org/rss/podcast.php?id=13","title":"Fresh Air","description":"Fresh Air from WHYY, the Peabody Award-winning weekday magazine of contemporary arts and issues, is one of public radio's most popular programs. Hosted by Terry Gross, the show features intimate conversations with today's biggest luminaries.","category":"","imageURL":"http://media.npr.org/images/podcasts/thumbnail/npr_freshair_image_75.jpg","website":""},"messageType":"logPodcast","episode":{"enclosure":"http://podcastdownload.npr.org/anon.npr-podcasts/podcast/13/124475239/npr_124475239.mp3","title":"NPR: 03-08-2010 Fresh Air","url":"http://freshair.npr.org?ft=2&f=13","episodeID":4007779,"summary":"Stories:  1) 'Whip Smart': Memoirs Of A Dominatrix 2) The Gods, At Play In The House Of Mortals 3) A Tribute To Sparklehorse's Mark Linkous","pubDate":"2010-03-08 21:31:14 -0500"},"user":{"UDID":"45A4C147-9ECE-592E-925B-FC39657842F6"}}
     JSON
   end
 
