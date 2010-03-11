@@ -46,15 +46,24 @@ class ListenLoggerTest < ActiveSupport::TestCase
     time_start = 1.minute.ago
     time_2 = time_start + 5.seconds
     doc_id = ListenLogger.new(create_stream_json).create_doc(time_start)['id']
+    # Note that this is the kind of JSON that the client should send:
     json = {:doc_id => doc_id, :mesasgeType => "extendDuration"}.to_json
     ListenLogger.new(json).extend_duration(:until => time_2)
     assert_equal 5, @db.get(doc_id)['listenLog']['listenDuration']
+  end
+
+  test "create a podcast listen" do
+
   end
 
   def create_stream_json
     <<-JSON
 {"stream":{"frequency":"WHYY-FM 90.9","website":"http://whyy.org","url":"http://207.245.67.204:80","location":"Pennsylvania","streamID":63,"logoURL":"http://stream.publicbroadcasting.net/publicradioplayer/iphone/logos/whyy.jpg","displayName":"WHYY Philadelphia"},"currentProgram":{"title":"Fresh Air","endTime":"2010-03-10 16:00:00 -0500","startTime":"2010-03-10 15:00:00 -0500","programID":27},"messageType":"logStream","user":{"UDID":"45A4C147-9ECE-592E-925B-FC39657842F6"}}
     JSON
+  end
+
+  def create_podcast_json
+
   end
 end
 

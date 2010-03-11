@@ -28,6 +28,7 @@ class ListenLogger
       created_at = DateTime.parse(@doc['listenLog']['createdAt'])
       new_duration = (params[:until] - created_at).to_i
       @doc['listenLog']['listenDuration'] = new_duration
+      @doc['listenLog']['updatedAt'] = params[:until]
       @@db.save_doc(@doc)
     end
   end
