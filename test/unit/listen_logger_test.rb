@@ -71,9 +71,7 @@ class ListenLoggerTest < ActiveSupport::TestCase
     ListenLogger.new(message.to_json).extend_duration
     assert_equal 11, @db.get(doc_id)['listenLog']['podcastDuration']
     assert_equal 7, @db.get(doc_id)['listenLog']['lastListenedPoint']
-    puts @db.documents( :include_docs => true).inspect
   end
-
 
   def create_stream_json
     <<-JSON
