@@ -15,22 +15,28 @@ class ListenLogger
     @parsed[:listenLog] = {:listenDuration => 0, :createdAt => created_at}
 
     if @parsed[:messageType] == 'logPodcast'
-      @parsed.merge!({:totalDuration => nil, :lastListenedSecond => 0})
+      @parsed.merge!({:totalDuration => nil, :lastListenedPoint => 0})
     elsif @parsed[:messageType] == 'logStream'
 
     end
     @@db.save_doc(@parsed)
   end
 
-  def extend_duration(params)
+  def extend_duration(params={})
+    default_params = {:until => Time.now}
+    params = default_params.merge(params)
     get_doc
     if params[:until].is_a?(Time)
       created_at = DateTime.parse(@doc['listenLog']['createdAt'])
       new_duration = (params[:until] - created_at).to_i
       @doc['listenLog']['listenDuration'] = new_duration
       @doc['listenLog']['updatedAt'] = params[:until]
-      @@db.save_doc(@doc)
     end
+
+    if @parsed["listenLog"]
+      @doc['listenLog'].merge!(@parsed["listenLog"]) # merge in all the other parameters
+    end
+    @@db.save_doc(@doc)
   end
 
   def get_doc
