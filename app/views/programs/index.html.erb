@@ -1,2 +1,14 @@
-<h1>Programs#index</h1>
-<p>Find me in app/views/programs/index.html.erb</p>
+<h1>Total Seconds Per Program</h1>
+
+<table>
+<% @items.each do |item| %>
+  <tr>
+    <td>
+      <%= item["key"] %>  
+    </td>
+    <td class="number">
+      <%= item['value'] %>
+    </td>
+  </tr>
+<% end %>
+</table>

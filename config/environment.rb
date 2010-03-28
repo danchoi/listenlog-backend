@@ -20,7 +20,7 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "json"
-  config.gem "geokit", :version => '1.5.0'
+  #config.gem "geokit", :version => '1.5.0'
   config.gem "rest-client", :version => '1.4.1', :lib => 'rest_client'
   config.gem "couchrest", :version => '0.35'
   # Only load the plugins named here, in the order given (default is alphabetical).

@@ -1,8 +1,20 @@
 <h3>Listen Log for User <%= params[:id] %></h3>
 
 
+<p>
+Total rows: <%= @total_rows %>
+<br/>
+Offset: <%= @offset %>
+<br/>
+Showing <%= @offset + 1 %> - <%= [@offset + @limit, @total_rows].min %>
+<br/>
+<%= link_to "next 20", :startkeys => @items.last['key'] %>
+
+</p>
+
+
 <% @items.each do |x| %>
-  <%= render :partial => 'users/item', :object => x %>
+  <%= render :partial => 'users/item', :object => x['doc'] %>
 <% end %>
 
 

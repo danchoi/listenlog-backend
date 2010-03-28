@@ -15,13 +15,13 @@ class CouchViews
 
     'all_by_user_and_created_at' => { "map" => "function(doc) {
     if (doc.user && doc.listenLog.createdAt)
-      emit([doc.user, doc.listenLog.createdAt], null); }" },
+      emit([doc.user.UDID, doc.listenLog.createdAt], null); }" },
 
       'listens_count_per_user' => { 
           "map" => "
             function(doc) {
               if (doc.user && doc.listenLog.createdAt)
-                emit(doc.user, 1)
+                emit(doc.user.UDID, 1)
             }",
           "reduce" => "
             function(keys, values, rereduce) {
@@ -33,7 +33,7 @@ class CouchViews
           "map" => "
             function(doc) {
               if (doc.user && doc.listenLog.listenDuration)
-                emit(doc.user, doc.listenLog.listenDuration)
+                emit(doc.user.UDID, doc.listenLog.listenDuration)
             }",
           "reduce" => "
             function(keys, values, rereduce) {
@@ -44,10 +44,10 @@ class CouchViews
           "map" => "function(doc) {
 
               if (doc.user && doc.listenLog.listenDuration && doc.program)
-                emit([doc.user, doc.program.title], doc.listenLog.listenDuration)
+                emit([doc.user.UDID, doc.program.title], doc.listenLog.listenDuration)
 
               if (doc.user && doc.listenLog.listenDuration && doc.currentProgram)
-                emit([doc.user, doc.currentProgram.title], doc.listenLog.listenDuration)
+                emit([doc.user.UDID, doc.currentProgram.title], doc.listenLog.listenDuration)
             }",
           "reduce" => "
             function(keys, values, rereduce) {
@@ -58,7 +58,7 @@ class CouchViews
           "map" => "function(doc) {
 
               if (doc.user && doc.listenLog.listenDuration && doc.stream)
-                emit([doc.user, doc.stream.displayName], doc.listenLog.listenDuration)
+                emit([doc.user.UDID, doc.stream.displayName], doc.listenLog.listenDuration)
 
             }",
           "reduce" => "
@@ -88,8 +88,7 @@ class CouchViews
           "reduce" => "
             function(keys, values, rereduce) {
               return sum(values);
-          } "},
-
+          } "}
 
 
     }
