@@ -21,4 +21,13 @@ class UserTest < ActiveSupport::TestCase
   end
 
 
+  test 'authenticate an id and a pin' do
+    user = User.create_doc
+    id = user['_id']
+    pin = user['pin']
+    assert User.authenticate(id, pin)
+    assert ! User.authenticate(id, 'badbad')
+    assert ! User.authenticate('random', pin)
+  end
+
 end

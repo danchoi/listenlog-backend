@@ -17,8 +17,11 @@ class ListenLogger
 
     if @parsed[:messageType] == 'logPodcast'
       @parsed.merge!({:totalDuration => nil, :lastListenedPoint => 0})
-    elsif @parsed[:messageType] == 'logStream'
+    end
 
+    # Strip any user pin ; we'll handle authorization at the controller layer
+    if @parsed['user'] && @parsed['user']['pin']
+      @parsed['user'].delete('pin')
     end
     @@db.save_doc(@parsed)
   end

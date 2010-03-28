@@ -15,6 +15,12 @@ class User
     doc = @@db.get(doc_id)
   end
 
+  def self.authenticate(doc_id, pin)
+    doc = @@db.get(doc_id)
+    doc['pin'] == pin ? true : false
+  rescue RestClient::ResourceNotFound
+    return false
+  end
 
 
 end

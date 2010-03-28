@@ -29,6 +29,13 @@ class ListenLoggerTest < ActiveSupport::TestCase
     assert_equal "Pennsylvania", doc['stream']['location']
   end
 
+  test 'should strip any userPIN info' do
+    x = ListenLogger.new(create_stream_json)
+    resp = x.create_doc
+    doc = @db.get(resp['id'])
+    assert doc['user']['pin'].nil?, "user pin not stripped"
+  end
+
   test "should add initial listen log attributes" do
     doc_id = ListenLogger.new(create_stream_json).create_doc['id']
     doc = @db.get(doc_id)
@@ -86,7 +93,7 @@ class ListenLoggerTest < ActiveSupport::TestCase
 
   def create_stream_json
     <<-JSON
-{"stream":{"frequency":"WHYY-FM 90.9","website":"http://whyy.org","url":"http://207.245.67.204:80","location":"Pennsylvania","streamID":63,"logoURL":"http://stream.publicbroadcasting.net/publicradioplayer/iphone/logos/whyy.jpg","displayName":"WHYY Philadelphia"},"currentProgram":{"title":"Fresh Air","endTime":"2010-03-10 16:00:00 -0500","startTime":"2010-03-10 15:00:00 -0500","programID":27},"messageType":"logStream","user":{"UDID":"45A4C147-9ECE-592E-925B-FC39657842F6"}}
+{"stream":{"frequency":"WHYY-FM 90.9","website":"http://whyy.org","url":"http://207.245.67.204:80","location":"Pennsylvania","streamID":63,"logoURL":"http://stream.publicbroadcasting.net/publicradioplayer/iphone/logos/whyy.jpg","displayName":"WHYY Philadelphia"},"currentProgram":{"title":"Fresh Air","endTime":"2010-03-10 16:00:00 -0500","startTime":"2010-03-10 15:00:00 -0500","programID":27},"messageType":"logStream","user":{"UDID":"45A4C147-9ECE-592E-925B-FC39657842F6", "pin":"625321"}}
     JSON
   end
 
