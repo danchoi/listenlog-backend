@@ -25,9 +25,9 @@ class UsersController < ApplicationController
 
   # only json in the request
   def create
-    payload = request.body.read
-    user = User.new(payload)
-    logger.debug("Create users; payload: #{payload.inspect}")
-    logger.debug("Create users; payload parsed: #{payload.inspect}")
+    user_doc = User.create_doc
+    logger.debug("Create user: #{user_doc.inspect}")
+    render :text => user_doc.to_json
+
   end
 end

@@ -5,19 +5,14 @@ class User
   @@db = @@cr.database(COUCHDB)
 
   attr_reader :raw, :parsed, :message_type
-  def initialize(json)
-    @raw = json
-    @parsed = JSON.parse(json)
-    @message_type = @parsed['messageType']
+  def initialize
   end
 
-  def create_doc(created_at = Time.now) # parameterized to make testing easier
-    return unless @message_type == 'createUser'
-
+  def self.create_doc(created_at = Time.now) # parameterized to make testing easier
     user_pin = "%.6d" % rand(1000000)
     new_user = {:createdAt => created_at, :pin => user_pin}
-
-    @@db.save_doc(user_doc)
+    doc_id = @@db.save_doc(new_user)['id'] 
+    doc = @@db.get(doc_id)
   end
 
 
