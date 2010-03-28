@@ -10,7 +10,7 @@ class User
 
   def self.create_doc(created_at = Time.now) # parameterized to make testing easier
     user_pin = "%.6d" % rand(1000000)
-    new_user = {:createdAt => created_at, :pin => user_pin}
+    new_user = {:createdAt => created_at, :pin => user_pin, :messageType => "createUser"}
     doc_id = @@db.save_doc(new_user)['id'] 
     doc = @@db.get(doc_id)
   end

@@ -17,6 +17,7 @@ class UserTest < ActiveSupport::TestCase
     # {"_id"=>"b7f96eb914dbc91acaa588f123fd6b52", "_rev"=>"1-3425854716", "createdAt"=>"2010/03/28 21:54:42 +0000", "pin"=>"625321"}
     assert x['_id']
     assert x['pin'] =~ /\d{6}/
+    assert_equal "createUser",  x['messageType']
   end
 
 
