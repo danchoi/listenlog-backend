@@ -74,3 +74,10 @@ td.number {
   text-align:right;
 
 }
+
+.itemRaw {
+  display: none;
+  font-family: monospace, Courier; 
+  font-size: smaller;
+  background-color: #ffc4c8;
+}

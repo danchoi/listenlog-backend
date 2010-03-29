@@ -17,6 +17,13 @@ module ApplicationHelper
     time_ago_in_words(datetime) + " ago"
   end
 
+  def raw_item(item)
+    item = item.dup
+    item.delete('_id')
+    item.delete('_rev')
+    item.to_json
+  end
+
   def reverse_geocode(item)
     return # for testing
     return unless item["user"]

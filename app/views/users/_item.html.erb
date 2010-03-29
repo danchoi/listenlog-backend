@@ -10,11 +10,16 @@
 
     <%= format_date( DateTime.parse(item["listenLog"]["createdAt"]) ) %>. You listened for 
     <%= format_duration item["listenLog"]["listenDuration"] %>.
+    <%= link_to_function "raw data", "$('##{item['_id']}').toggle()" %>
 
     <% if item["messageType"] == 'logPodcast' %>
       <div class='episode-summary'><%= item["episode"]["summary"] %>
         <%= link_to("listen now", item["episode"]["enclosure"]) %>
       </div>
     <% end %>
+  </div>
+
+  <div id="<%=item['_id']%>" class="itemRaw">
+    <%= raw_item(item) %>
   </div>
 </div>
