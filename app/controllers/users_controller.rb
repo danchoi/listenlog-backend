@@ -18,6 +18,8 @@ class UsersController < ApplicationController
     @items = @res['rows']
     @total_rows = @res['total_rows']
     @offset = @res['offset']
+
+    logger.debug("USER AGENT: #{request.env["HTTP_USER_AGENT"]}")
   end
 
   def index
