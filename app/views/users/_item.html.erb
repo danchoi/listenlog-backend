@@ -7,11 +7,14 @@
     <% else %>
       <%= podcast_description(item) %>
     <% end %>
-    on
-    <%= DateTime.parse(item["listenLog"]["createdAt"]).to_s(:long) %>. You listened for 
+
+    <%= format_date( DateTime.parse(item["listenLog"]["createdAt"]) ) %>. You listened for 
     <%= format_duration item["listenLog"]["listenDuration"] %>.
 
+    <% if item["messageType"] == 'logPodcast' %>
+      <div class='episode-summary'><%= item["episode"]["summary"] %>
+        <%= link_to("listen now", item["episode"]["enclosure"]) %>
+      </div>
+    <% end %>
   </div>
-
-
 </div>

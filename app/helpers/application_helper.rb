@@ -13,6 +13,10 @@ module ApplicationHelper
     end
   end
 
+  def format_date(datetime)
+    time_ago_in_words(datetime) + " ago"
+  end
+
   def reverse_geocode(item)
     return # for testing
     return unless item["user"]
@@ -52,9 +56,8 @@ module ApplicationHelper
     program_link = !program['website'].blank? ? link_to(program['title'], program['website']) : program['title']
 
       "started listening to the <strong>#{program_link}</strong> podcast" +
-        (item['episode']['title'] ?  ", #{link_to(item['episode']['title'], episode_url)}" : "") +
-      "<div class='episode-summary'>#{item["episode"]["summary"]}</div>" + 
-      link_to("listen now", item["episode"]["enclosure"])
+        (item['episode']['title'] ?  ", #{link_to(item['episode']['title'], episode_url)}" : "") 
+
    
   end
 

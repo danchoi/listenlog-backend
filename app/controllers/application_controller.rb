@@ -8,4 +8,9 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+
+  def iphone_client?
+    user_agent = request.env["HTTP_USER_AGENT"]
+    user_agent =~ /iPhone/
+  end
 end

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
 
+
   # We're paginating the dumb way because smart pagination is complex in CouchDB
   # http://addywaddy.posterous.com/couchdb-and-pagination
   # http://books.couchdb.org/relax/receipts/pagination
@@ -20,10 +21,11 @@ class UsersController < ApplicationController
                        :include_docs => true, :descending => true)
     @items = @res['rows']
 
-    
+    #logger.debug(@res.inspect)
 
-    logger.debug(@res.inspect)
-    logger.debug("USER AGENT: #{request.env["HTTP_USER_AGENT"]}")
+    if iphone_client?
+      render :layout => 'iphone'
+    end
   end
 
   def index

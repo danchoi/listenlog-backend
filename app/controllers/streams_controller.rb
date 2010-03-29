@@ -6,8 +6,11 @@ class StreamsController < ApplicationController
                        :startkey => [@device_id, nil],
                        :endkey => [@device_id, {}],
                        :group => true)
-    logger.debug @res.inspect
+    
     @items = @res['rows']
+    if iphone_client?
+      render :layout => 'iphone'
+    end
   end
 
 end
