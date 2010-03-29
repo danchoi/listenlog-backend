@@ -13,4 +13,5 @@ class ApplicationController < ActionController::Base
     user_agent = request.env["HTTP_USER_AGENT"]
     user_agent =~ /iPhone/
   end
+  helper_method :iphone_client?
 end
