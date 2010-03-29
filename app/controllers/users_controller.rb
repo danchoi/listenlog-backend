@@ -36,6 +36,21 @@ class UsersController < ApplicationController
     user_doc = User.create_doc
     logger.debug("Create user: #{user_doc.inspect}")
     render :text => user_doc.to_json
+  end
 
+  def export
+    @device_id = params[:id]
+    @startkey = [@device_id] 
+    @endkey = [@device_id, {}]
+    @res = Views.fetch("my_views/all_by_user_and_created_at", 
+                       :startkey => @startkey,
+                       :endkey => @endkey,
+                       :include_docs => true)
+    # this is inefficient; do a direct json extraction later
+    respond_to do |format|
+      format.json do 
+        render :json  => @res['rows'].to_json
+      end
+    end
   end
 end

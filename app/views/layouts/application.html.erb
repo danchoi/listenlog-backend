@@ -17,12 +17,7 @@
         
         <div class="grid_3">
           <div class="sidebar">
-            <h4>Navigation</h4>
-            <ul>
-              <li><%= link_to "My ListenLog", "/users/#{params[:id] || params[:user_id]}" %></li>
-              <li><%= link_to "Stream Listening Summary", "/users/#{params[:id] || params[:user_id]}/streams" %></li>
-              <li><%= link_to "Program Listening Summary", "/users/#{params[:id] || params[:user_id]}/programs" %></li>
-            </ul>
+            <%= render :partial => "shared/nav" %>
           </div>
         </div>
       </div>
