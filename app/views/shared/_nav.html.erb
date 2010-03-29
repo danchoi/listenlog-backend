@@ -1,13 +1,14 @@
-<% if params[:id] || params[:user_id] %>
 
   <h4>Navigation</h4>
   <ul>
-    <li><%= link_to "My ListenLog", "/users/#{params[:id] || params[:user_id]}" %></li>
-    <li><%= link_to "Stream Listening Summary", "/users/#{params[:id] || params[:user_id]}/streams" %></li>
-    <li><%= link_to "Program Listening Summary", "/users/#{params[:id] || params[:user_id]}/programs" %></li>
-    <% if ! iphone_client? %>
-      <li><%= link_to "Export my data", "/users/#{params[:id] || params[:user_id]}/export.json" %></li>
+    <li><%= link_to "HomePage", "/" %></li>
+    <% if params[:id] || params[:user_id] %>
+      <li><%= link_to "My ListenLog", "/users/#{params[:id] || params[:user_id]}" %></li>
+      <li><%= link_to "Stream Listening Summary", "/users/#{params[:id] || params[:user_id]}/streams" %></li>
+      <li><%= link_to "Program Listening Summary", "/users/#{params[:id] || params[:user_id]}/programs" %></li>
+      <% if ! iphone_client? %>
+        <li><%= link_to "Export my data", "/users/#{params[:id] || params[:user_id]}/export.json" %></li>
+      <% end %>
     <% end %>
   </ul>
-<% end %>
 
