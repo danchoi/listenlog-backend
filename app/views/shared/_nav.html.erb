@@ -1,3 +1,4 @@
+<% if params[:id] || params[:user_id] %>
 
   <h4>Navigation</h4>
   <ul>
@@ -8,4 +9,5 @@
       <li><%= link_to "Export my data", "/users/#{params[:id] || params[:user_id]}/export.json" %></li>
     <% end %>
   </ul>
+<% end %>
 
