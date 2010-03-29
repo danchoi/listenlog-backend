@@ -1,5 +1,17 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def format_duration(seconds)
+    minutes = seconds.to_i / 60 
+    if minutes < 1
+      "< 1 minute"
+    elsif minutes < 60
+      pluralize(minutes, "minute")
+    else
+      hours = minutes / 60
+      minutes = minutes % 60
+      [pluralize(hours, "hours"), pluralize(minutes, "minutes")].join(' and ')
+    end
+  end
 
   def reverse_geocode(item)
     return # for testing
@@ -13,9 +25,21 @@ module ApplicationHelper
     end
   end
 
+  def image(item)
+    case item['messageType']
+    when 'logStream'
+      image_tag(item['stream']['logoURL'], :class => 'stationLogo') 
+    when 'logPodcast'
+      program = item['program']
+      program_image_url = !program['imageURL'].blank? ? program['imageURL'] : nil
+      if program_image_url
+        image_tag(program_image_url, :class => 'podcastImage')
+      end
+    end
+  end
+
   # for stream
   def current_streaming_program_description(item)
-    image_tag(item['stream']['logoURL'], :class => 'stationLogo') +
     "started listening " + 
     (item["currentProgram"]["title"] ? "to <strong>#{item['currentProgram']['title']}</strong> on " : "to ") +
       link_to(item['stream']['displayName'], item['stream']['website'])
@@ -24,7 +48,10 @@ module ApplicationHelper
   def podcast_description(item)
     
     episode_url = item["episode"]["url"]
-      "started listening to the <strong>#{item['program']['title']}</strong> podcast" +
+    program = item['program']
+    program_link = !program['website'].blank? ? link_to(program['title'], program['website']) : program['title']
+
+      "started listening to the <strong>#{program_link}</strong> podcast" +
         (item['episode']['title'] ?  ", #{link_to(item['episode']['title'], episode_url)}" : "") +
       "<div class='episode-summary'>#{item["episode"]["summary"]}</div>" + 
       link_to("listen now", item["episode"]["enclosure"])

@@ -1,13 +1,17 @@
 <div class="listenItem">
- You 
-  <% if item["messageType"] == "logStream" %>
-    <%= current_streaming_program_description(item) %>
-  <% else %>
-    <%= podcast_description(item) %>
-  <% end %>
-  on
-  <%= DateTime.parse(item["listenLog"]["createdAt"]).to_s(:long) %>. You listened for 
-  <%= item["listenLog"]["listenDuration"] %> seconds.
+  <%= image(item) %> 
+  <div class="listenItemText">
+    You 
+    <% if item["messageType"] == "logStream" %>
+      <%= current_streaming_program_description(item) %>
+    <% else %>
+      <%= podcast_description(item) %>
+    <% end %>
+    on
+    <%= DateTime.parse(item["listenLog"]["createdAt"]).to_s(:long) %>. You listened for 
+    <%= format_duration item["listenLog"]["listenDuration"] %>.
+
+  </div>
+
+
 </div>
-
-

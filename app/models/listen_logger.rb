@@ -20,8 +20,8 @@ class ListenLogger
     end
 
     # Strip any user pin ; we'll handle authorization at the controller layer
-    if @parsed['user'] && @parsed['user']['pin']
-      @parsed['user'].delete('pin')
+    if @parsed['user'] && @parsed['user']['userPIN']
+      @parsed['user'].delete('userPIN')
     end
     @@db.save_doc(@parsed)
   end

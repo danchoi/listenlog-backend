@@ -19,10 +19,9 @@
           <div class="sidebar">
             <h4>Navigation</h4>
             <ul>
-              <li><%= link_to "Spy", "/spy" %></li>
-              <li><%= link_to "Stream Stats", "/stream" %></li>
-              <li><%= link_to "Total Seconds Per Stream", "/stream" %></li>
-              <li><%= link_to "Etc.", "/" %></li>
+              <li><%= link_to "My ListenLog", "/users/#{params[:id] || params[:user_id]}" %></li>
+              <li><%= link_to "Stream Listening Summary", "/users/#{params[:id] || params[:user_id]}/streams" %></li>
+              <li><%= link_to "Program Listening Summary", "/users/#{params[:id] || params[:user_id]}/programs" %></li>
             </ul>
           </div>
         </div>
