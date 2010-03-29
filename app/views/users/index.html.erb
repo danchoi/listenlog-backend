@@ -1,2 +1,22 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>ListenLog betatest users</h1>
+
+
+<table>
+  <thead>
+    <th>User</th>
+    <th>Total listening time</th>
+  </thead>
+  <tbody>
+<% @items.each do |item| %>
+  <tr>
+    <td>
+  <%= link_to item['key'], "/users/#{item['key']}" %>
+    </td>
+    <td>
+      <%= format_duration item['value'] %>
+    </td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+

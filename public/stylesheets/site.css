@@ -81,3 +81,6 @@ td.number {
   font-size: smaller;
   background-color: #ffc4c8;
 }
+
+th, td { text-align: left }
+th { padding: 2px 5px }

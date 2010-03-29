@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   # Keep in mind you can assign values other than :controller and :action
 
   map.connect 'logger', :controller => 'logger', :action => 'log'
+  map.root :controller => 'users'
   map.connect 'spy', :controller => 'spy'
   map.resources 'users', :member => {:export => :get} do |user|
     user.resources 'streams'

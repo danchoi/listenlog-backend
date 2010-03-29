@@ -29,6 +29,16 @@ class UsersController < ApplicationController
   end
 
   def index
+    @res = Views.fetch("my_views/total_seconds_per_user", 
+                       :group => true,
+                       :descending => true)
+    @items = @res['rows']
+
+    #logger.debug(@res.inspect)
+
+    if iphone_client?
+      render :layout => 'iphone'
+    end
   end
 
   # only json in the request
