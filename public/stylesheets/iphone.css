@@ -113,3 +113,19 @@ h4 {
   margin-top: 4px;
   line-height: 1.2em;
 }
+table.stats {
+  width:100%
+}
+td.leftCol {
+  vertical-align:top;
+  width: 60%;
+  font-size: 14px;
+  color: #333;
+  font-weight:bold;
+}
+td.number {
+  vertical-align:top;
+  font-size: 13px;
+  text-align:right;
+}
+
