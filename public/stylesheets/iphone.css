@@ -101,11 +101,16 @@ h4 {
 /* VRM */
 
 
-.iphone-listenItem img {
+.listenItem img {
   width: 75px;
   padding-left: 5px;
   padding-bottom: 5px;
   float:right;
+}
+.listenItem  .episode-summary {
+  color: #666;
+  font-size: small;
+ 
 }
 
 
