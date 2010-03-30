@@ -1,14 +1,2 @@
 <h1>Total Listening Time Per Stream</h1>
-
-<table>
-<% @items.each do |item| %>
-  <tr>
-    <td>
-      <%= item["key"][1] %>  
-    </td>
-    <td class="number">
-      <%= format_duration item['value'] %>
-    </td>
-  </tr>
-<% end %>
-</table>
+<%= render :partial => 'table' %>

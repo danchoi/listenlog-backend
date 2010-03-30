@@ -110,7 +110,6 @@ h4 {
 .listenItem  .episode-summary {
   color: #666;
   font-size: small;
-  line-height: 1.1em;
+  margin-top: 4px;
+  line-height: 1.2em;
 }
-
-

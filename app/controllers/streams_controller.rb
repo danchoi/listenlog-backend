@@ -9,7 +9,7 @@ class StreamsController < ApplicationController
     
     @items = @res['rows']
     if iphone_client?
-      render :layout => 'iphone'
+      render :layout => 'iphone', :template => "streams/index-iphone" 
     end
   end
 
