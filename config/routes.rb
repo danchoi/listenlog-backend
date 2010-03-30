@@ -9,6 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'users'
   map.connect 'spy', :controller => 'spy'
   map.resources 'users', :member => {:export => :get} do |user|
+    user.resource 'account'
     user.resources 'streams'
     user.resources 'programs'
   end

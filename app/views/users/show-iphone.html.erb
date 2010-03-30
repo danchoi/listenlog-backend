@@ -1,0 +1,45 @@
+<h2>Your ListenLog</h2>
+
+<fieldset>
+  <%= render :partial => 'iphone_nav' %>
+
+  <% @items[0, @limit].each do |x| %>
+    <div class="row">
+
+      <div class="mainBox" style="padding:14px 14px 14px 0;">
+
+        <% item = x['doc'] %>
+
+        <div class="iphone-listenItem">
+          <%= image(item) %> 
+
+          <div class="iphone-listenItemText">
+
+            You 
+            <% if item["messageType"] == "logStream" %>
+              <%= current_streaming_program_description(item) %>
+            <% else %>
+              <%= podcast_description(item) %>
+            <% end %>
+            <%= format_date( DateTime.parse(item["listenLog"]["createdAt"]) ) %>. You listened for 
+            <%= format_duration item["listenLog"]["listenDuration"] %>.
+
+            <% if item["messageType"] == 'logPodcast' %>
+              <div class='episode-summary'><%= item["episode"]["summary"] %>
+                <%= link_to("listen now", item["episode"]["enclosure"]) %>
+              </div>
+            <% end %>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+    
+  <%= render :partial => 'iphone_nav' %>
+
+</fieldset>
+
+

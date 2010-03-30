@@ -1,8 +1,6 @@
 <h4>Listen Log for User <%= params[:id] %></h4>
 
-
 <p>
-
   <br/>
   Showing <%= @offset + 1 %> - <%= [@offset + @limit, @offset + @items.size].min %>
   <br/>
@@ -10,9 +8,8 @@
     <%= link_to "previous #@limit", :offset => @offset - @limit  %>
   <% end %>
   <% if @items.size >= (@limit+1) %>
-  <%= link_to "next #@limit", :offset => @offset + @limit %>
+    <%= link_to "next #@limit", :offset => @offset + @limit %>
   <% end %>
-
 </p>
 
 

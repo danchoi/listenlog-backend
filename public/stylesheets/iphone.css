@@ -9,3 +9,103 @@ body {
     -webkit-text-size-adjust: none;
 }
 
+/* by Daniel Choi for InstantWatcher */
+h3 {
+  margin-bottom: 11px;
+}
+.releaseYear {
+  font-size: 12px;
+  font-weight: normal;
+}
+.boxArt {
+  float: left;
+  margin-top: 2px;
+  width: 112px;
+  min-height: 150px;
+  margin-right: 12px;
+  margin-bottom: 5px;
+}
+.boxArtRight {
+  float: right;
+  margin-right: 12px;
+  margin-left: 12px;
+  margin-bottom: 5px;
+}
+
+
+h4 {
+  margin: 0;
+  margin-bottom: 7px;
+}
+.listArrow {
+    text-decoration: none;
+    color: inherit;
+    background: url(/images/listArrow.png) no-repeat right center;
+}
+
+.row > .mainBox {
+    margin: 0 0 0 14px;
+    line-height: 20px;
+}
+.row > .rowVal {
+    position: absolute;
+    margin: 0 0 0 14px;
+    right: 14px;
+    line-height: 42px;
+}
+
+.row > .linkingInstructions {
+    margin: 0 10px 0 14px;
+    line-height: 20px;
+}
+.row .linkingInstructions p {
+  margin-top:12px;
+
+}
+.row label a { 
+  text-decoration:none; 
+  margin: 0 -14px;
+  padding: 0 14px;
+  width: 100%;
+}
+.row label a:link { color:black; }
+.row label a:visited { color:black; }
+
+
+.branding img {
+  vertical-align: top;
+  padding-top: 8px;
+  padding-right: 5px;
+  
+}
+.branding a:link, .branding a:visited {
+  text-decoration: none;
+  color: #CCC;
+}
+
+.videoTitle {
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.youtubeClips {
+  margin-left: 12px;
+  margin-top: 12px;
+}
+
+
+
+
+
+/* VRM */
+
+
+.iphone-listenItem img {
+  width: 75px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  float:right;
+}
+
+

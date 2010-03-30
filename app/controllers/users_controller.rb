@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   # http://books.couchdb.org/relax/receipts/pagination
   # We'll figure out the better way later
   def show
+    
     @device_id = params[:id]
     @limit = 10
     @offset = (params[:offset] || 0).to_i
@@ -23,8 +24,8 @@ class UsersController < ApplicationController
 
     #logger.debug(@res.inspect)
 
-    if iphone_client?
-      render :layout => 'iphone'
+    if 1 # iphone_client?
+      render :template => 'users/show-iphone', :layout => 'iphone'
     end
   end
 

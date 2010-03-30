@@ -1,0 +1,33 @@
+<h2>Navigation</h2>
+
+<fieldset>
+  <% unless controller.controller_name  == 'users' %>
+    <div class="row listArrow">
+      <label>
+        <%= link_to "My ListenLog", "/users/#{params[:id] || params[:user_id]}" %>
+      </label>
+    </div>
+  <% end %>
+  <% unless controller.controller_name  == 'streams' %>
+    <div class="row listArrow">
+      <label>
+         <%= link_to "Stream Listening Summary", "/users/#{params[:id] || params[:user_id]}/streams" %> 
+      </label>
+    </div>
+  <% end %>
+  <% unless controller.controller_name  == 'programs' %>
+    <div class="row listArrow">
+      <label>
+         <%= link_to "Program Listening Summary", "/users/#{params[:id] || params[:user_id]}/programs" %> 
+      </label>
+    </div>
+  <% end %>
+  <% unless controller.controller_name  == 'accounts' %>
+    <div class="row listArrow">
+      <label>
+         <%= link_to "Account", "/users/#{params[:id] || params[:user_id]}/account" %> 
+      </label>
+    </div>
+  <% end %>
+</fieldset>
+
