@@ -2,10 +2,10 @@
     <div class="row">
       <label>
         <% if @offset > 0  %>
-          <%= link_to "previous #@limit", :offset => @offset - @limit  %>
+          <%= link_to "previous", :offset => @offset - @limit  %>
         <% end %>
         <% if @items.size >= (@limit+1) %>
-          <%= link_to "next #@limit", :offset => @offset + @limit %>
+          <%= link_to "next", :offset => @offset + @limit %>
         <% end %>
       </label>
     </div>
