@@ -4,7 +4,9 @@
 
   <% if params[:id] || params[:user_id] %>
 
-    <li><%= link_to "About ListenLog", "/users/#{params[:id] || params[:user_id]}" %></li>
+    <% if iphone_client? %>
+      <li><%= link_to "About ListenLog", "/users/#{params[:id] || params[:user_id]}" %></li>
+    <% end %>
 
     <li><%= link_to "ListenLog", "/users/#{params[:id] || params[:user_id]}/activity" %></li>
 
