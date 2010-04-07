@@ -9,7 +9,7 @@ module ApplicationHelper
     else
       hours = minutes / 60
       minutes = minutes % 60
-      [pluralize(hours, "hours"), pluralize(minutes, "minutes")].join(' and ')
+      [pluralize(hours, "hour"), pluralize(minutes, "minute")].join(' and ')
     end
   end
 
