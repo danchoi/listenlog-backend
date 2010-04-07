@@ -11,7 +11,14 @@
   <body>
     <div class="container_12">
       <div class="grid_7 prefix_1" id="main">
+        <% if flash[:notice] %>
+          <div class="notice">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+
         <%= yield %>
+
       </div>
       <div class="grid_3 suffix_1">
         

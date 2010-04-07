@@ -1,0 +1,15 @@
+<h3>ListenLog</h3>
+
+<%= render :partial => 'lognav' %>
+
+<% if @items.empty? %>
+  <p> NO DATA :(</p>
+<% end %>
+
+<% @items[0, @limit].each do |x| %>
+  <%= render :partial => 'users/item', :object => x['doc'] %>
+<% end %>
+
+<%= render :partial => 'lognav' %>
+
+

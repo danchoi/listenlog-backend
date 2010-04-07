@@ -1,0 +1,17 @@
+
+<h3>Delete ListenLog</h3>
+
+<p>
+To delete your ListenLog, you need to enter your ListenLog PIN. 
+You can find this PIN by pressing the "Show PIN" button in the ListenLog
+browser in the Public Radio Player app.
+</p>
+
+
+<% form_tag user_activity_path(:user_id => @device_id),:method => :delete do %>
+
+  <strong>ListenLog PIN:</strong>
+  <%= text_field_tag :pin, params[:pin] %>
+  <%= submit_tag "Submit" %>
+
+<% end %>

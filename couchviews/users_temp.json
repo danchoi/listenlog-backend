@@ -1,0 +1,5 @@
+{ "map": "function(doc) { 
+    if (doc.messageType && doc.createdAt && doc.messageType == \"createUser\") 
+        emit([doc.createdAt, doc._id, doc.pin], null); 
+   }"
+}

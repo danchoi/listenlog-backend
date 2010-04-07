@@ -5,7 +5,8 @@ class User
   @@db = @@cr.database(COUCHDB)
 
   attr_reader :raw, :parsed, :message_type
-  def initialize
+  def initialize(user_id)
+    @user_id = user_id
   end
 
   def self.create_doc(created_at = Time.now) # parameterized to make testing easier
@@ -22,5 +23,20 @@ class User
     return false
   end
 
+  def all_docs
+    @res = Views.fetch("deletion/all_for_user", 
+                    :startkey => [@user_id],
+                    :endkey => [@user_id, {}])
+
+    @res['rows'].map do |item|
+      { '_id' => item["id"], '_rev' => item["key"][1] }
+    end
+  end
+
+  def delete_activity
+    all_docs.map do |doc|
+       @@db.delete_doc(doc)
+    end
+  end
 
 end

@@ -8,6 +8,14 @@ body {
 #main {
   padding-bottom: 40px;
 }
+.notice {
+  margin: 20px 0;
+  background-color: #B3FFCA;
+  padding: 10px 0;
+  text-align: center;
+  font-weight: bold;
+}
+
 hr {
   margin-top: 28px;
 }

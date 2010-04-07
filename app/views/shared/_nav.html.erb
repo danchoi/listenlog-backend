@@ -1,26 +1,44 @@
 
-  <h4>Navigation</h4>
-  <ul id="navigation">
+<h4>Navigation</h4>
+<ul class="navigation">
 
-    <% if iphone_client? %>
+  <% if params[:id] || params[:user_id] %>
+
+    <li><%= link_to "About ListenLog", "/users/#{params[:id] || params[:user_id]}" %></li>
+
+    <li><%= link_to "ListenLog", "/users/#{params[:id] || params[:user_id]}/activity" %></li>
+
+    <li><%= link_to "Stream Listening Summary", "/users/#{params[:id] || params[:user_id]}/streams" %></li>
+
+    <li><%= link_to "Program Listening Summary", "/users/#{params[:id] || params[:user_id]}/programs" %></li>
+
+    <% unless iphone_client? %>
+      <li><%= link_to "Export Data", "/users/#{params[:id] || params[:user_id]}/export.json" %></li>
+
       <li>
-      <%= link_to "Account", "/users/#{params[:user_id] || params[:id]}/account" %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "HomePage", "/" %>
+        <%= link_to "Delete Data", "/users/#{params[:id] || params[:user_id]}/activity/authorize_delete" %>
       </li>
     <% end %>
 
-    <% if params[:id] || params[:user_id] %>
+  <% end %>
 
-      <li><%= link_to "ListenLog", "/users/#{params[:id] || params[:user_id]}" %></li>
-      <li><%= link_to "Stream Listening Summary", "/users/#{params[:id] || params[:user_id]}/streams" %></li>
-      <li><%= link_to "Program Listening Summary", "/users/#{params[:id] || params[:user_id]}/programs" %></li>
-      <% unless iphone_client? %>
-        <li><%= link_to "Export Data", "/users/#{params[:id] || params[:user_id]}/export.json" %></li>
-      <% end %>
+  <% if iphone_client? %>
+    <li>
+    <%= link_to "Manage Your ListenLog", "/users/#{params[:user_id] || params[:id]}/account" %>
+    </li>
+  <% end %>
 
-    <% end %>
-  </ul>
+</ul>
 
+<% if ! iphone_client? %>
+
+<ul class="navigation">
+  <li>
+    <%= link_to "Home Page", "/" %>
+  </li>
+  <li>
+    <%= link_to "Project VRM", "http://blogs.law.harvard.edu/vrm/" %>
+  </li>
+</ul>
+
+<% end %>

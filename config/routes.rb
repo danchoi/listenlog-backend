@@ -5,14 +5,16 @@ ActionController::Routing::Routes.draw do |map|
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
   # Keep in mind you can assign values other than :controller and :action
 
+  map.root :controller => 'home'
   map.connect 'logger', :controller => 'logger', :action => 'log'
-  map.root :controller => 'users'
   map.connect 'spy', :controller => 'spy'
   map.resources 'users', :member => {:export => :get} do |user|
     user.resource 'account'
     user.resources 'streams'
     user.resources 'programs'
+    user.resource 'activity', :member => {:authorize_delete => :get}
   end
+  #map.connect 'users/:user_id/activity', :controller => 'activity', :action => 'show'
   map.resources 'streams'
   map.resources 'programs'
 

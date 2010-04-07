@@ -1,0 +1,12 @@
+
+     { 
+          "types": {
+            "map": "function(doc) { 
+                if (doc.messageType) 
+                    emit(doc.messageType, 1); 
+              }",
+              "reduce": "function(keys,values,rereduce) {
+                return sum(values);
+              }"
+          }
+     }
