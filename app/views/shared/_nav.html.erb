@@ -18,7 +18,7 @@
       <li><%= link_to "Stream Listening Summary", "/users/#{params[:id] || params[:user_id]}/streams" %></li>
       <li><%= link_to "Program Listening Summary", "/users/#{params[:id] || params[:user_id]}/programs" %></li>
       <% unless iphone_client? %>
-        <li><%= link_to "Export my data", "/users/#{params[:id] || params[:user_id]}/export.json" %></li>
+        <li><%= link_to "Export Data", "/users/#{params[:id] || params[:user_id]}/export.json" %></li>
       <% end %>
 
     <% end %>
