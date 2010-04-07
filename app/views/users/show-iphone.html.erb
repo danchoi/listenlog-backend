@@ -1,3 +1,8 @@
+
+
+<a href="http://listenlog.org/sendMyselfUrl">email myself my user URL and PIN</a>
+
+
 <h2>Your ListenLog</h2>
 
 <fieldset>
@@ -20,7 +25,8 @@
             <% else %>
               <%= podcast_description(item) %>
             <% end %>
-            <%= format_date( DateTime.parse(item["listenLog"]["createdAt"]) ) %>. You listened for 
+
+          <%= format_date( DateTime.parse(item["listenLog"]["createdAt"]) ) %><% if item['user']['application'] %> from <%= item['user']['application'] %><% end %>. You listened for 
             <%= format_duration item["listenLog"]["listenDuration"] %>.
 
             <% if item["messageType"] == 'logPodcast' %>
