@@ -10,7 +10,11 @@
 
     <%= format_date( DateTime.parse(item["listenLog"]["createdAt"]) ) %><% if item['user']['application'] %> from <%= item['user']['application'] %><% end %>. You listened for 
     <%= format_duration item["listenLog"]["listenDuration"] %>.
-    <%= link_to_function "raw data", "$('##{item['_id']}').toggle()" %>
+
+    <% if ! iphone_client? %>
+      <%= link_to_function("raw data", "$('##{item['_id']}').toggle()") %>
+    <% end %>
+
 
     <% if item["messageType"] == 'logPodcast' %>
       <div class='episode-summary'><%= item["episode"]["summary"] %>
@@ -19,7 +23,9 @@
     <% end %>
   </div>
 
-  <div id="<%=item['_id']%>" class="itemRaw">
-    <%= raw_item(item) %>
-  </div>
+  <% if ! iphone_client? %>
+    <div id="<%=item['_id']%>" class="itemRaw">
+      <%= raw_item(item) %>
+    </div>
+  <% end %>
 </div>

@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     #logger.debug(@res.inspect)
 
     if iphone_client?
-      render :template => 'users/show-iphone', :layout => 'iphone'
+      render :layout => 'iphone'
     end
   end
 

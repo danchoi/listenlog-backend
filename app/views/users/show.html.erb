@@ -1,20 +1,10 @@
-<h4>Listen Log for User <%= params[:id] %></h4>
+<h3>Listen Log</h3>
 
-<p>
-  <br/>
-  Showing <%= @offset + 1 %> - <%= [@offset + @limit, @offset + @items.size].min %>
-  <br/>
-  <% if @offset > 0  %>
-    <%= link_to "previous #@limit", :offset => @offset - @limit  %>
-  <% end %>
-  <% if @items.size >= (@limit+1) %>
-    <%= link_to "next #@limit", :offset => @offset + @limit %>
-  <% end %>
-</p>
-
+<%= render :partial => 'lognav' %>
 
 <% @items[0, @limit].each do |x| %>
   <%= render :partial => 'users/item', :object => x['doc'] %>
 <% end %>
 
+<%= render :partial => 'lognav' %>
 

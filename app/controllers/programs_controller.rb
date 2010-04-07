@@ -8,7 +8,7 @@ class ProgramsController < ApplicationController
 
     @items = @res['rows']
     if iphone_client?
-      render :layout => 'iphone', :template => "programs/index-iphone.html.erb"
+      render :layout => 'iphone'
     end
   end
 
