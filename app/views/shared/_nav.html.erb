@@ -8,7 +8,7 @@
       <li><%= link_to "About ListenLog", "/users/#{params[:id] || params[:user_id]}" %></li>
     <% end %>
 
-    <li><%= link_to "ListenLog", "/users/#{params[:id] || params[:user_id]}/activity" %></li>
+    <li><%= link_to "ListenLog / Reload ListenLog", "/users/#{params[:id] || params[:user_id]}/activity" %></li>
 
     <li><%= link_to "Stream Listening Summary", "/users/#{params[:id] || params[:user_id]}/streams" %></li>
 
